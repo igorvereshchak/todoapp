@@ -1,0 +1,60 @@
+
+#:import MDLabel kivymd.label.MDLabel
+#:import MDTextField kivymd.textfields.MDTextField
+#:import MDRaisedButton kivymd.button.MDRaisedButton
+
+
+<ItemLabel@MDLabel>:
+    #font_size: '100sp'
+   
+    markup: True
+    halign: 'center'
+    valign: 'middle'
+    size_hint_y: None
+    height: dp(50)
+    #text_size: self.texture_size
+    font_style: 'Subtitle1'
+    theme_text_color: 'Primary'
+    Image:
+        #pos: (self.parent.pos_x , self.parent.pos_y)
+        source: 'delete.png'
+
+<Container>:
+    rows: 3
+    orientation: 'vertical'
+
+    AnchorLayout:
+        size_hint: 1, 0.15
+        padding: 10
+        
+        MDTextField:
+            id: text_input
+            font_size: '25sp'
+        	multiline: False
+            on_text_validate: 
+                if text_input.text != "" : root.addtodoClick(text_input.text); \
+                text_input.text = ""
+    GridLayout:
+        #orientation: 'vertical'
+        id: todolist
+        cols: 1
+
+    BoxLayout:
+    	size_hint: 1, 0.2
+        padding: [20, 0, 20, 20] 
+        MDRaisedButton:
+            id: add_button
+            size_hint: 1, 0.9
+        	text: 'Add ToDo'
+            padding_x: 5
+            on_press:
+                if text_input.text != "" : root.addtodoClick(text_input.text); \
+                text_input.text = ""
+        Widget:
+            size_hint: 0.05, 1
+        MDRaisedButton: 
+            size_hint: 1, 0.9
+        	text: 'Clear ToDos'
+            padding_x: 5
+            on_press:
+                root.clearTodos()
