@@ -1,10 +1,9 @@
-
 #:import MDLabel kivymd.label.MDLabel
 #:import MDTextField kivymd.textfields.MDTextField
 #:import MDRaisedButton kivymd.button.MDRaisedButton
 
 
-<ItemLabel@MDLabel>:
+<ItemLabel@Label>:
     #font_size: '100sp'
    
     markup: True
@@ -38,6 +37,13 @@
         #orientation: 'vertical'
         id: todolist
         cols: 1
+
+        Label:
+            id: test_label
+            text: '[ref=l]1231123123[/ref]'
+            markup: True
+            on_ref_press:
+                root.LabelClickHandler(self)
 
     BoxLayout:
     	size_hint: 1, 0.2

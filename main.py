@@ -5,18 +5,24 @@ from kivy.uix.label import Label
 from kivymd.theming import ThemeManager
 from kivymd.label import MDLabel
 
-class ItemLabel(MDLabel):
+class ItemLabel(Label):
     pass
         
     
 
 class Container(BoxLayout):
+    #def clickHandler(self):
+
+
     def addtodoClick(self, text):
         lab = ItemLabel(text="[ref=l]{}[/ref]".format(text))
         lab.font_size = '40sp'
         
         lab.bind(on_ref_press=self.LabelClickHandler)
+        
         self.ids['todolist'].add_widget(lab)
+        self.ids['test_label'].text = lab.text
+        print("{} {}".format(lab.text_size, lab.texture_size))
         #print(self.ids['todolist'].children)
     
     def LabelClickHandler(self, *args):
@@ -29,7 +35,7 @@ class Container(BoxLayout):
             text = "[s]{}[/s]".format(text)
             lab.color = (0.5, 0.5, 0.5, 1)
         lab.text = text
-        lab.update()
+        #lab.update()
         print("{} {}".format(lab.text_size, lab.texture_size))
         
              
