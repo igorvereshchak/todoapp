@@ -1,7 +1,13 @@
+#:kivy 1.10.1
+ 
 #:import MDLabel kivymd.label.MDLabel
 #:import MDTextField kivymd.textfields.MDTextField
 #:import MDRaisedButton kivymd.button.MDRaisedButton
 
+<ClickableImage@Image,ButtonBehavior>:
+    source: 'delete.png'
+    size: (30, 30)
+    
 
 <ItemLabel@Label>:
     #font_size: '100sp'
@@ -14,9 +20,9 @@
     #text_size: self.texture_size
     font_style: 'Subtitle1'
     theme_text_color: 'Primary'
-    Image:
-        #pos: (self.parent.pos_x , self.parent.pos_y)
-        source: 'delete.png'
+    ClickableImage:
+        center: (self.parent.center_x + self.parent.texture_size[0]/2 + dp(18), self.parent.center_y - dp(4))
+        
 
 <Container>:
     rows: 3
@@ -33,18 +39,17 @@
             on_text_validate: 
                 if text_input.text != "" : root.addtodoClick(text_input.text); \
                 text_input.text = ""
-    GridLayout:
-        #orientation: 'vertical'
-        id: todolist
-        cols: 1
 
-        Label:
-            id: test_label
-            text: '[ref=l]1231123123[/ref]'
-            markup: True
-            on_ref_press:
-                root.LabelClickHandler(self)
+    ScrollView:
+    #     #do_scroll_x: False
+        do_scroll_y: True
+    #     size_hint: (1, None)
 
+        GridLayout:
+            id: todolist
+            cols: 1
+        #height: self.minimum_height
+      
     BoxLayout:
     	size_hint: 1, 0.2
         padding: [20, 0, 20, 20] 
