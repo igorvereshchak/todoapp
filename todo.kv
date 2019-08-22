@@ -43,12 +43,13 @@
     ScrollView:
     #     #do_scroll_x: False
         do_scroll_y: True
-    #     size_hint: (1, None)
+        #size_hint: (0.4, 1)
 
         GridLayout:
             id: todolist
             cols: 1
-        #height: self.minimum_height
+            size_hint_y: None
+            height: self.minimum_height
       
     BoxLayout:
     	size_hint: 1, 0.2
@@ -63,6 +64,7 @@
                 text_input.text = ""
         Widget:
             size_hint: 0.05, 1
+
         MDRaisedButton: 
             size_hint: 1, 0.9
         	text: 'Clear ToDos'

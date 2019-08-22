@@ -13,14 +13,16 @@ from kivymd.label import MDLabel
 import datetime
 import locale
 
+#Window.size = (480, 853)
+
+from kivy.config import Config
+Config.set('kivy', 'keyboard_mode', 'systemanddock')
+
 class ItemLabel(Label):
     pass
         
 class ClickableImage(Image, ButtonBehavior):
-    #def on_press(self):
-    #    print(1)
-    #def on_touch_down(self, touch): 
-    pass
+     pass
     
     
 
@@ -47,9 +49,7 @@ class Container(BoxLayout):
         lab.children[0].bind(on_touch_down=self.delClick)
         
         self.ids['todolist'].add_widget(lab)
-        #self.ids['test_label'].text = lab.text
-        #print("{}".format(lab.children[0].on_press()))
-        #print(self.ids['todolist'].children)
+    
     
     def delClick (self, image, touch):
         if image.collide_point(*touch.pos):
@@ -67,11 +67,6 @@ class Container(BoxLayout):
             text = "[s]{}[/s]".format(text)
             lab.color = (0.5, 0.5, 0.5, 1)
         lab.text = text
-        #locale.setlocale(locale.LC_TIME, 'ru')
-
-        #print(time.strftime("%a %b %d %H:%M:%S %Y").encode('cp1251'))
-        #lab.update()
-        #print("{} {}".format(lab.text_size, lab.texture_size))
         
              
     
@@ -111,4 +106,3 @@ class ToDoApp(App):
 
 if __name__ == "__main__":
     ToDoApp().run()        
-#print("Hello, world")
